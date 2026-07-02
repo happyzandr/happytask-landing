@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HappyTask – Run Your Service Business. Free.</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --orange: #f7880c;
+      --orange-dark: #c56b09;
+      --green: #64ad43;
+      --green-dark: #4e8c33;
+      --text: #0b0b0b;
+      --muted: rgba(0,0,0,.62);
+      --muted2: rgba(0,0,0,.48);
+      --stroke: rgba(0,0,0,.08);
+      --stroke2: rgba(0,0,0,.12);
+      --radius: 22px;
+      --font: 'Roboto', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--text); background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    .wrap { width: min(1040px, 100%); margin-inline: auto; padding-inline: 20px; }
+
+    /* HEADER */
+    .header { position:sticky; top:0; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(12px); border-bottom:1px solid var(--stroke); }
+    .header .navbar { padding:10px 0; position:relative; }
+    .header .nav-logo { height:44px; width:auto; }
+    .header .no_tagline_logo { display:none; }
+    .header .business_logo { display:none; }
+    @media (max-width:991px) { .header .business_logo { display:none; } .header .no_tagline_logo.mobile_logo { display:block; } .header .no_tagline_logo.desktop_logo { display:none; } }
+    @media (min-width:992px) { .header .business_logo { display:none; } .header .no_tagline_logo.desktop_logo { display:block; } .header .no_tagline_logo.mobile_logo { display:none; } }
+    .header .navbar-nav .nav-link { color:var(--text); font-weight:600; font-size:14.5px; padding:8px 14px; }
+    .header .navbar-nav .nav-link:hover { color:var(--orange); }
+    .yllw-btn-box { margin-left:14px; }
+    .yllw-btn { background:var(--orange) !important; color:#fff !important; border-radius:8px; padding:9px 18px !important; font-weight:700 !important; font-size:14px !important; transition:background .2s; }
+    .yllw-btn:hover { background:var(--orange-dark) !important; color:#fff !important; }
+    .yllw-btn-trns { border:2px solid var(--orange); color:var(--orange) !important; border-radius:8px; padding:7px 16px !important; font-weight:700 !important; font-size:14px !important; }
+    .yllw-btn-trns:hover { background:var(--orange); color:#fff !important; }
+    .header .menu-item-has-children { position:relative; }
+    .header .sub-menu { display:none; position:absolute; top:100%; right:0; left:auto; background:#fff; border:1px solid var(--stroke); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.1); list-style:none; padding:8px 0; margin:0; min-width:220px; z-index:999; }
+    .header .menu-item-has-children:hover .sub-menu { display:block; }
+    .header .sub-menu .nav-link { padding:9px 18px !important; font-size:15px !important; white-space:nowrap; }
+    .header .sub-menu .sub_text { font-size:11px; color:var(--muted); font-weight:400; }
+    .login-btn-1 { display:none; }
+    .label-mobile { display:none; }
+    @media (max-width:991px) { .login-btn-1 { display:block; } .mainNav-login { display:none; } .header .sub-menu { position:static; box-shadow:none; border:none; padding-left:12px; } .header .navbar-brand { position:absolute; left:50%; top:10px; transform:translateX(-50%); z-index:10; } .label-desktop { display:none; } .label-mobile { display:inline; } }
+    .navbar-toggler { border:none; }
+    @media (max-width:991px) { .navbar-toggler { position:absolute; right:12px; top:14px; z-index:10; } }
+    .navbar-toggler:focus { box-shadow:none; }
+    .toggle_close { display:none; }
+    .navbar-toggler[aria-expanded="true"] .toggle_bar { display:none; }
+    .navbar-toggler[aria-expanded="true"] .toggle_close { display:inline; }
+
+    /* HERO */
+    .hero { padding: 80px 20px 70px; text-align: center; background: linear-gradient(160deg, #fff 60%, #fff8f2 100%); border-bottom: 1px solid var(--stroke); }
+    .hero-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 12.5px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; margin-bottom: 22px; color: var(--orange-dark); }
+    .hero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px rgba(100,173,67,.25); }
+    .hero h1 { font-size: clamp(32px, 5.5vw, 64px); font-weight: 950; letter-spacing: -.04em; line-height: 1.04; max-width: 18ch; margin-inline: auto; margin-bottom: 24px; }
+    .hero h1 em { font-style: normal; color: var(--orange); }
+    .hero p { font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 48ch; margin-inline: auto; line-height: 1.6; margin-bottom: 36px; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 9px; background: var(--green); color: #fff; border: none; border-radius: 14px; padding: 18px 32px; font-size: 15.5px; font-weight: 900; letter-spacing: .15px; text-transform: uppercase; cursor: pointer; text-decoration: none; box-shadow: 0 14px 28px rgba(100,173,67,.30); transition: transform .15s, box-shadow .15s, filter .15s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 34px rgba(100,173,67,.38); filter: brightness(1.06); }
+    .btn-primary:active { transform: translateY(0) scale(.98); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--text); border: 1.5px solid var(--stroke2); border-radius: 14px; padding: 17px 28px; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; transition: border-color .15s, background .15s; }
+    .btn-ghost:hover { border-color: var(--green); background: rgba(100,173,67,.04); }
+
+    /* SECTION 2: PROOF */
+    .proof-section { padding: 80px 20px; background: #fbfbfb; }
+    .proof-inner { max-width: 1040px; margin-inline: auto; }
+    .proof-heading { text-align: center; margin-bottom: 48px; }
+    .proof-heading h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; letter-spacing: -.035em; line-height: 1.08; margin-bottom: 12px; }
+    .proof-heading p { font-size: 16.5px; color: var(--muted); max-width: 50ch; margin-inline: auto; line-height: 1.6; }
+
+    .mockup-container { position: relative; max-width: 420px; margin-inline: auto; margin-bottom: 48px; }
+    .mockup-stack { position: relative; cursor: pointer; overflow: visible; }
+    .phone-frame, .phone-frame-back, .phone-frame-mid { background: #fff; border-radius: 32px; border: 2px solid var(--stroke2); box-shadow: 0 24px 60px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06); overflow: hidden; transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .4s ease, box-shadow .5s; width: 88%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; }
+    .phone-frame, .phone-frame-back, .phone-frame-mid { z-index: 0; transform: rotate(3.5deg) translateX(14%) translateY(12px); opacity: 0; pointer-events: none; transition: none; }
+    .mockup-stack.ready .phone-frame, .mockup-stack.ready .phone-frame-back, .mockup-stack.ready .phone-frame-mid { transition: transform .5s cubic-bezier(.4,0,.2,1), box-shadow .5s; }
+    .mockup-card-active { z-index: 3 !important; transform: none !important; opacity: 1 !important; pointer-events: auto !important; }
+    .mockup-card-behind { z-index: 1 !important; transform: rotate(3.5deg) translateX(14%) translateY(12px) !important; opacity: .55 !important; pointer-events: none !important; }
+    .mockup-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--stroke2); border: none; cursor: pointer; padding: 0; transition: background .3s, transform .3s; }
+    .mockup-dot.active { background: var(--orange); transform: scale(1.25); }
+    .mockup-tap-hint { text-align: center; font-size: 12px; color: var(--muted2); margin-top: 8px; }
+    .phone-status { background: #0b0b0b; color: #fff; padding: 10px 20px 8px; font-size: 12px; font-weight: 600; display: flex; justify-content: space-between; }
+    .phone-content { padding: 0; }
+
+    /* Availability picker */
+    .avail-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 20px 16px; border-bottom: 1px solid var(--stroke); }
+    .avail-header h3 { font-size: 20px; font-weight: 800; }
+    .avail-close { width: 36px; height: 36px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; border: none; font-size: 16px; color: var(--muted); }
+    .avail-cal-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px 10px; }
+    .avail-cal-icon { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--stroke2); display: flex; align-items: center; justify-content: center; }
+    .avail-cal-icon svg { width: 16px; height: 16px; color: var(--muted); }
+    .avail-arrows { display: flex; gap: 10px; }
+    .avail-arrow { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--stroke2); display: flex; align-items: center; justify-content: center; background: none; }
+    .avail-arrow svg { width: 16px; height: 16px; }
+    .avail-arrow.disabled { opacity: .3; }
+    .avail-arrow.active { border-color: var(--orange); }
+    .avail-arrow.active svg { color: var(--orange); }
+    .avail-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; padding: 10px 16px 16px; }
+    .avail-day { text-align: center; padding: 10px 4px; border-radius: 12px; border: 1px solid var(--stroke); cursor: default; }
+    .avail-day-label { font-size: 11px; color: var(--muted); font-weight: 500; }
+    .avail-day-num { font-size: 18px; font-weight: 700; margin-top: 2px; }
+    .avail-day.past { opacity: .3; }
+    .avail-day.today { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .avail-day.today .avail-day-label { color: rgba(255,255,255,.7); }
+    .avail-title { padding: 8px 20px 4px; }
+    .avail-title h4 { font-size: 19px; font-weight: 800; line-height: 1.3; }
+    .avail-title span { font-size: 14px; color: var(--muted); display: block; margin-top: 4px; }
+    .avail-slots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px 0; padding: 16px 12px 16px; }
+    .avail-slot { text-align: center; padding: 12px 4px; border-radius: 10px; border: 1px solid var(--stroke); cursor: default; font-weight: 600; line-height: 1.2; margin: 0 4px; }
+    .avail-slot .slot-time { display: block; font-size: 16px; font-weight: 700; color: var(--text); }
+    .avail-slot .slot-period { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .avail-slot.past-time { opacity: 1; border-color: var(--stroke); }
+    .avail-slot.past-time .slot-time { color: rgba(0,0,0,.25); text-decoration: line-through; }
+    .avail-slot.past-time .slot-period { color: rgba(0,0,0,.2); }
+    .avail-slot.selected { background: var(--orange); border-color: var(--orange); }
+    .avail-slot.selected .slot-time { color: #fff; text-decoration: none; }
+    .avail-slot.selected .slot-period { color: rgba(255,255,255,.8); }
+    .avail-slot.sel-start { border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: none; margin-right: 0; }
+    .avail-slot.sel-end { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: none; margin-left: 0; }
+    .avail-slot.half-selected { background: #fde8c8; border-color: #f5c078; border-radius: 0; border-left: none; border-right: none; margin-left: 0; margin-right: 0; }
+    .avail-slot.half-selected .slot-time { color: var(--text); text-decoration: none; }
+    .avail-slot.half-selected .slot-period { color: var(--muted); }
+    .avail-bottom { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-top: 1px solid var(--stroke); margin-top: auto; }
+    .avail-bottom-date { font-size: 20px; font-weight: 900; }
+    .avail-bottom-time { font-size: 11px; color: var(--muted); margin-top: 1px; }
+    .avail-continue { background: var(--orange); color: #fff; border: none; border-radius: 10px; padding: 14px 20px; font-size: 14px; font-weight: 800; cursor: default; }
+
+    /* Booking suggestions card */
+    .book-section { padding: 20px 20px 0; }
+    .book-section-title { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+    .book-section-sub { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+    .book-sug { border: 1px solid var(--stroke); border-radius: 14px; padding: 16px 18px; margin-bottom: 12px; }
+    .book-sug-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .book-sug-desc { font-size: 13px; color: var(--muted); line-height: 1.45; margin-bottom: 8px; }
+    .book-sug-dur { font-size: 13px; font-weight: 700; }
+    .book-show-all { border: 1px solid var(--stroke); border-radius: 12px; padding: 14px; text-align: center; font-size: 14px; font-weight: 700; margin-bottom: 0; cursor: default; }
+    .book-divider { height: 1px; background: var(--stroke); margin: 16px 20px; }
+    .book-review { padding: 0 20px; }
+    .book-review-heading { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+    .book-review-card { background: #f9f9f9; border-radius: 14px; padding: 16px 18px; margin-bottom: 12px; }
+    .book-review-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .book-review-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+    .book-review-name { font-size: 14px; font-weight: 700; }
+    .book-review-date { font-size: 12px; color: var(--muted); }
+    .book-review-stars { color: var(--orange); font-size: 13px; letter-spacing: 1px; margin-bottom: 6px; }
+    .book-review-text { font-size: 13px; color: var(--text); line-height: 1.5; }
+    .book-reviews-btn { border: 1px solid var(--stroke); border-radius: 12px; padding: 14px; text-align: center; font-size: 14px; font-weight: 700; margin: 0 20px 0; cursor: default; }
+    .book-other { padding: 0 20px; }
+    .book-other-heading { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+    .book-contact-btn { border: 1px solid var(--stroke); border-radius: 12px; padding: 14px; text-align: center; font-size: 14px; font-weight: 700; cursor: default; width: 100%; }
+
+    /* Mockup profile */
+    .mock-topbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 8px; }
+    .mock-back { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--stroke2); display: flex; align-items: center; justify-content: center; background: #fff; }
+    .mock-back svg { width: 16px; height: 16px; }
+    .mock-topbar-actions { display: flex; gap: 10px; }
+    .mock-topbar-actions svg { width: 20px; height: 20px; color: var(--text); }
+    .mock-profile { display: flex; align-items: center; gap: 16px; padding: 12px 20px 20px; }
+    .mock-avatar { width: 80px; height: 80px; border-radius: 50%; background: #e8e8e8; flex-shrink: 0; overflow: hidden; }
+    .mock-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .mock-avatar-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 900; color: var(--orange); background: #fef3e6; }
+    .mock-profile-info { }
+    .mock-name { font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+    .mock-verified { width: 18px; height: 18px; color: var(--orange); flex-shrink: 0; }
+    .mock-badge { display: flex; align-items: center; gap: 4px; font-size: 13px; color: var(--muted); font-weight: 600; margin-top: 2px; }
+    .mock-badge svg { width: 14px; height: 14px; color: var(--text); }
+    .mock-about { padding: 0 20px 16px; }
+    .mock-about-title { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+    .mock-about-text { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .mock-about-more { font-size: 13px; font-weight: 600; color: var(--text); margin-top: 6px; padding: 6px 14px; border: 1px solid var(--stroke2); border-radius: 8px; display: inline-block; cursor: default; }
+    .mock-photos { padding: 8px 20px 12px; }
+    .mock-photo-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; border-radius: 10px; overflow: hidden; height: 140px; }
+    .mock-photo-grid .ph { background: #e5e5e5; overflow: hidden; }
+    .mock-photo-grid .ph:first-child { grid-row: 1 / 3; }
+    .mock-photo-grid .ph img { width: 110%; height: 110%; object-fit: cover; margin: -5%; }
+    .mock-photo-btn { display: block; width: 100%; text-align: center; padding: 12px; border: 1px solid var(--stroke2); border-radius: 10px; font-size: 13px; font-weight: 600; color: var(--text); cursor: default; margin-top: 10px; }
+    .mock-sticky-bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-top: 1px solid var(--stroke); background: #fff; margin-top: 8px; }
+    .mock-price { font-size: 20px; font-weight: 900; }
+    .mock-price-note { font-size: 11px; color: var(--green); font-weight: 600; display: flex; align-items: center; gap: 3px; margin-top: 1px; }
+    .mock-price-note svg { width: 12px; height: 12px; }
+    .mock-avail-btn { background: var(--orange); color: #fff; border: none; border-radius: 10px; padding: 14px 20px; font-size: 14px; font-weight: 800; cursor: default; }
+
+    /* Callout cards */
+    .callouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+    .callout { text-align: center; padding: 24px 16px; background: #fff; border-radius: 16px; border: 1px solid var(--stroke); }
+    .callout-icon { font-size: 28px; margin-bottom: 10px; }
+    .callout h3 { font-size: 15px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 6px; }
+    .callout p { font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+    @media (max-width: 640px) {
+      .callouts { grid-template-columns: 1fr; gap: 0; border: 1px solid var(--stroke); border-radius: 16px; overflow: hidden; }
+      .callout { text-align: left; display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-radius: 0; border: none; border-bottom: 1px solid var(--stroke); }
+      .callout:last-child { border-bottom: none; }
+      .callout-icon { font-size: 22px; margin-bottom: 0; flex-shrink: 0; }
+      .callout h3 { font-size: 14px; margin-bottom: 2px; }
+      .callout p { font-size: 12.5px; line-height: 1.4; margin-bottom: 0; }
+    }
+    .proof-cta { text-align: center; }
+
+    /* SECTION 3: PAIN / SOUND FAMILIAR */
+    .pain-section { padding: 80px 20px; text-align: center; border-bottom: 1px solid var(--stroke); }
+    .pain-section h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; letter-spacing: -.035em; line-height: 1.08; margin-bottom: 40px; }
+    .pain-items { max-width: 520px; margin-inline: auto; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+    .pain-item { display: flex; align-items: center; gap: 16px; padding: 14px 22px; background: #fff; border-radius: 14px; border: 1px solid var(--stroke); text-align: left; }
+    .pain-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .pain-icon-blue { background: rgba(59,130,246,.1); }
+    .pain-icon-green { background: rgba(34,197,94,.1); }
+    .pain-icon-gray { background: rgba(100,116,139,.1); }
+    .pain-icon-red { background: rgba(239,68,68,.1); }
+    .pain-item p { font-size: 15.5px; font-weight: 700; line-height: 1.3; letter-spacing: -.01em; margin: 0; }
+    .pain-item p span { color: var(--muted); font-weight: 500; display: block; font-size: 13.5px; margin-top: 2px; line-height: 1.2; }
+
+    /* SERVICE WHEEL */
+    .wheel-section { padding: 80px 20px 60px; text-align: center; background: #fbfbfb; border-bottom: 1px solid var(--stroke); }
+    .wheel-section h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; letter-spacing: -.035em; line-height: 1.08; margin-bottom: 8px; }
+    .wheel-subtitle { font-size: 15px; color: var(--muted); margin-bottom: 36px; }
+    .wheel-subtitle strong { color: var(--orange); font-weight: 800; }
+    .wheel-container { position: relative; height: 280px; overflow: hidden; max-width: 420px; margin-inline: auto; margin-bottom: 32px; }
+    .wheel-mask-top, .wheel-mask-bottom { position: absolute; left: 0; right: 0; height: 100px; z-index: 2; pointer-events: none; }
+    .wheel-mask-top { top: 0; background: linear-gradient(to bottom, #fbfbfb 20%, rgba(251,251,251,0) 100%); }
+    .wheel-mask-bottom { bottom: 0; background: linear-gradient(to top, #fbfbfb 20%, rgba(251,251,251,0) 100%); }
+    .wheel-track { display: flex; flex-direction: column; align-items: center; will-change: transform; }
+    .wheel-item { padding: 8px 0; white-space: nowrap; line-height: 32px; transition: font-size .25s ease-out, font-weight .25s ease-out, color .25s ease-out, letter-spacing .25s ease-out; font-size: 14px; font-weight: 400; color: rgba(0,0,0,.18); letter-spacing: -.01em; font-family: inherit; }
+    .wheel-item.active { font-size: 22px; font-weight: 900; color: var(--text); letter-spacing: -.03em; }
+    .wheel-item.near { font-size: 15px; font-weight: 500; color: rgba(0,0,0,.32); }
+    .wheel-item.far { font-size: 15px; font-weight: 500; color: rgba(0,0,0,.22); }
+    .wheel-count { font-size: 13px; color: var(--muted2); margin-top: 8px; }
+    .wheel-count a { color: var(--orange); font-weight: 700; text-decoration: underline; cursor: pointer; transition: color .15s; }
+    .wheel-count a:hover { color: var(--orange-dark); text-decoration: underline; }
+
+    /* HUBSPOT MODAL (Don't see yours?) */
+    .hs-modal-overlay { display: none; position: fixed; inset: 0; z-index: 1050; background: rgba(0,0,0,.55); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 20px; }
+    .hs-modal-overlay.active { display: flex; }
+    .hs-modal { background: #fff; border-radius: 20px; padding: 32px 28px 28px; max-width: 480px; width: 100%; box-shadow: 0 32px 80px rgba(0,0,0,.22); position: relative; animation: modalIn .22s cubic-bezier(.34,1.56,.64,1); }
+    .hs-modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--muted); line-height: 1; padding: 4px 8px; border-radius: 8px; transition: background .15s; }
+    .hs-modal-close:hover { background: #f3f3f3; }
+    .hs-modal h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; letter-spacing: -.02em; }
+    .hs-modal p { font-size: 14px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+    .hs-modal .hs-form-frame { min-height: 200px; }
+
+    /* SIGNUP MODAL (CTA buttons) */
+    .ht-modal-overlay { display: none; position: fixed; inset: 0; z-index: 1050; background: rgba(0,0,0,.55); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 20px; }
+    .ht-modal-overlay.active { display: flex; }
+    @keyframes modalIn { from { opacity: 0; transform: scale(.92) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .ht-modal { background: #fff; border-radius: 20px; padding: 32px 24px 28px; max-width: 460px; width: 100%; box-shadow: 0 32px 80px rgba(0,0,0,.22); position: relative; animation: modalIn .22s cubic-bezier(.34,1.56,.64,1); }
+    .ht-modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--muted); line-height: 1; padding: 4px 8px; border-radius: 8px; transition: background .15s; }
+    .ht-modal-close:hover { background: #f3f3f3; }
+    .signup-heading { font-size: 22px; font-weight: 900; margin-bottom: 18px; letter-spacing: -.02em; text-align: center; }
+    .signup-error { color: #dc3545; font-size: 13px; margin-bottom: 8px; }
+    .signup-error:empty { display: none; }
+    .show_msg.hidden { display: none; }
+    .signup-row { display: flex; gap: 10px; margin-bottom: 12px; }
+    .signup-row.full { display: block; margin-bottom: 12px; }
+    .signup-field { flex: 1; }
+    .signup-input { width: 100%; padding: 13px 14px; border: 1.5px solid var(--stroke2); border-radius: 10px; font-size: 15px; font-family: var(--font); outline: none; transition: border-color .15s; }
+    .signup-input:focus { border-color: var(--orange); }
+    .signup-select { width: 100%; padding: 13px 14px; border: 1.5px solid var(--stroke2); border-radius: 10px; font-size: 15px; font-family: var(--font); outline: none; background: #fff; appearance: auto; }
+    .signup-select:focus { border-color: var(--orange); }
+    .password-wrap { position: relative; }
+    .password-wrap .input-group { position: relative; }
+    .toggle-pw { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 4px; }
+    .password-hint { font-size: 12px; color: var(--muted); margin: -4px 0 12px 2px; }
+    .arrow-top { background: #f8f8f8; border-radius: 10px; padding: 14px; margin-top: 8px; margin-bottom: 8px; font-size: 13px; }
+    .arrow-top .first_label { font-weight: 700; font-size: 13px; }
+    .arrow-top .radio label { font-size: 13px; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .rightred { background: var(--orange); color: #fff !important; padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; display: inline-block; }
+    .spinner-img { width: 16px; height: 16px; margin-left: 6px; vertical-align: middle; }
+    .spinner-img.hidden { display: none; }
+    .signup-terms { font-size: 12px; color: var(--muted); margin: 4px 0 16px; line-height: 1.5; }
+    .signup-terms a { color: var(--orange); text-decoration: underline; }
+    .signup-submit { width: 100%; padding: 15px; background: var(--green); color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; font-family: var(--font); cursor: pointer; transition: background .15s, transform .1s; }
+    .signup-submit:hover { background: var(--green-dark); }
+    .signup-submit:active { transform: scale(.98); }
+
+    /* VIDEO MODAL */
+    .video-modal-overlay { display: none; position: fixed; inset: 0; z-index: 1050; background: rgba(0,0,0,.85); align-items: center; justify-content: center; padding: 20px; }
+    .video-modal-overlay.active { display: flex; }
+    .video-modal { width: 100%; max-width: 800px; position: relative; animation: hsModalIn .22s cubic-bezier(.34,1.56,.64,1); display: flex; flex-direction: column; gap: 14px; align-items: flex-end; }
+    .video-modal-frame { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; }
+    .video-modal iframe { width: 100%; height: 100%; border: none; display: block; }
+    .video-modal-close { background: rgba(255,255,255,.15); border: none; color: #fff; font-size: 14px; font-weight: 700; font-family: var(--font); cursor: pointer; padding: 10px 20px; border-radius: 10px; opacity: .85; transition: opacity .15s, background .15s; display: flex; align-items: center; gap: 6px; }
+    .video-modal-close:hover { opacity: 1; background: rgba(255,255,255,.25); }
+
+    /* SECTION 4: TESTIMONIAL */
+    .testimonial-section { padding: 48px 20px; background: #fff; text-align: center; }
+    .testimonial-label { font-size: 12px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    .testimonial-card { max-width: 520px; margin-inline: auto; display: flex; align-items: flex-start; gap: 18px; text-align: left; }
+    .testimonial-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; object-position: center 20%; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,.1); margin-top: 2px; }
+    .testimonial-body { flex: 1; }
+    .testimonial-quote { font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--text); margin-bottom: 10px; letter-spacing: -.01em; }
+    .testimonial-meta { font-size: 13px; color: var(--muted); font-weight: 600; }
+    .testimonial-meta strong { color: var(--text); font-weight: 800; }
+    .testimonial-cta { margin-top: 32px; }
+
+    /* SECTION 5: TOOLS */
+    .tools-section { padding: 80px 20px; text-align: center; background: #fbfbfb; border-bottom: 1px solid var(--stroke); }
+    .tools-section h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; letter-spacing: -.035em; line-height: 1.08; margin-bottom: 6px; }
+    .tools-section h2 em { font-style: normal; color: var(--orange); }
+    .tools-subtitle { font-size: 15px; color: var(--muted); margin-bottom: 36px; line-height: 1.5; }
+    .tools-value-tag { display: inline-block; background: rgba(100,173,67,.12); color: var(--green); font-size: 13px; font-weight: 800; padding: 5px 14px; border-radius: 20px; margin-bottom: 28px; }
+    .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 520px; margin-inline: auto; margin-bottom: 36px; }
+    .tool-card { text-align: left; padding: 20px 18px; background: #fff; border-radius: 14px; border: 1px solid var(--stroke); }
+    .tool-card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 10px; }
+    .tool-card-icon.orange { background: rgba(247,136,12,.12); }
+    .tool-card-icon.green { background: rgba(100,173,67,.12); }
+    .tool-card-icon.blue { background: rgba(59,130,246,.1); }
+    .tool-card-icon.purple { background: rgba(139,92,246,.1); }
+    .tool-card h3 { font-size: 14px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 3px; }
+    .tool-card p { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+    .tool-card .tool-value { font-size: 11px; font-weight: 700; color: var(--green); margin-top: 6px; }
+    .tools-full-card { text-align: left; padding: 20px 18px; background: #fff; border-radius: 14px; border: 1px solid var(--stroke); max-width: 520px; margin-inline: auto; margin-bottom: 36px; }
+    .tools-full-card .tool-card-icon { margin-bottom: 10px; }
+    .tools-full-card h3 { font-size: 14px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 3px; }
+    .tools-full-card p { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+    .tools-full-card .tool-value { font-size: 11px; font-weight: 700; color: var(--green); margin-top: 6px; }
+
+    /* SECTION 6: FAQ */
+    .faq-section { padding: 80px 20px; text-align: center; background: #fff; border-bottom: 1px solid var(--stroke); }
+    .faq-section h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; letter-spacing: -.035em; line-height: 1.08; margin-bottom: 32px; }
+    .faq-list { max-width: 580px; margin-inline: auto; text-align: left; margin-bottom: 40px; }
+    .faq-list details { border-bottom: 1px solid var(--stroke2); }
+    .faq-list summary { font-size: 15.5px; font-weight: 700; padding: 18px 0; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; letter-spacing: -.01em; }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { content: '+'; font-size: 22px; font-weight: 500; color: var(--muted); flex-shrink: 0; transition: transform .2s; }
+    .faq-list details[open] summary::after { content: '\2212'; }
+    .faq-list details p { font-size: 14.5px; color: var(--muted); line-height: 1.65; padding: 0 0 18px; }
+
+    /* SECTION 7: DARK CLOSER */
+    .closer-section { background: linear-gradient(135deg, #0b0b0b 0%, #1a1a1a 100%); padding: 80px 20px; text-align: center; }
+    .closer-section h2 { font-size: clamp(26px, 4vw, 48px); font-weight: 950; letter-spacing: -.04em; color: #fff; max-width: 20ch; margin-inline: auto; margin-bottom: 14px; line-height: 1.06; }
+    .closer-section h2 em { font-style: normal; color: var(--orange); }
+    .closer-section p { font-size: clamp(15px, 2vw, 17px); color: rgba(255,255,255,.55); max-width: 44ch; margin-inline: auto; line-height: 1.7; margin-bottom: 36px; }
+    .closer-section .btn-primary { box-shadow: 0 14px 28px rgba(100,173,67,.25); }
+
+    /* FOOTER */
+    footer { padding: 28px 20px; border-top: 1px solid var(--stroke); text-align: center; font-size: 13px; color: var(--muted2); }
+
+    @media (max-width: 640px) {
+      .hero { padding: 56px 20px 50px; }
+      .proof-section { padding: 56px 10px; }
+      .proof-heading p { font-size: 14px; }
+      .mockup-container { width: 420px; margin-left: 50%; transform: translateX(-50%) scale(0.85); transform-origin: top center; margin-bottom: -30px; }
+      .pain-section { padding: 56px 20px; }
+      .pain-item { gap: 12px; padding: 14px 16px; }
+      .pain-icon { width: 42px; height: 42px; min-width: 42px; }
+      .testimonial-section { padding: 40px 20px; }
+      .tools-section { padding: 56px 16px; }
+      .tools-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .faq-section { padding: 56px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="custom-header" class="header sp-header">
+    <div class="container-fluid">
+      <nav id="nav-logged-out" class="navbar navbar-expand-lg">
+        <div class="login-btn-1">
+          <div class="nav-item menu-item-has-children">
+            <a class="nav-link yllw-btn-trns" href="#">Login</a>
+            <ul class="sub-menu">
+              <li><a href="https://happytask.com/client-login/" class="nav-link">Client Login <span class="sub_text">(customer)</span></a></li>
+              <li><a href="https://happytask.com/sp-login/" class="nav-link">Service Provider Login <span class="sub_text">(seller)</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <a class="navbar-brand" href="https://happytask.com/">
+          <img src="https://happytask.com/wp-content/themes/e-zhire/images/headerNav_logo.png" class="nav-logo business_logo">
+          <img src="https://happytask.com/wp-content/themes/e-zhire/images/headerNav_logo_notagLine.png" class="nav-logo no_tagline_logo desktop_logo">
+          <img src="https://happytask.com/wp-content/themes/e-zhire/images/headerNav_logo_notagLine_stacked.png" class="nav-logo no_tagline_logo mobile_logo">
+        </a>
+        <button class="navbar-toggle btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa-solid fa-bars toggle_bar"></i>
+          <i class="fa-solid fa-xmark toggle_close"></i>
+        </button>
+        <div id="navbarNav" class="collapse navbar-collapse">
+          <ul id="logged-out-nav" class="navbar-nav ms-auto">
+            <li><a href="#services" class="nav-link"><span class="label-desktop">Services</span><span class="label-mobile">Services</span></a></li>
+            <li class="mainNav-login menu-item-has-children"><a href="#" class="nav-link">Login</a>
+              <ul class="sub-menu">
+                <li><a href="https://happytask.com/client-login/" class="nav-link">Client Login <span class="sub_text">(customer)</span></a></li>
+                <li><a href="https://happytask.com/sp-login/" class="nav-link">Service Provider Login <span class="sub_text">(seller)</span></a></li>
+              </ul>
+            </li>
+            <li class="nav-item yllw-btn-box">
+              <a class="nav-link yllw-btn" href="javascript:void(0)" onclick="openModal()">Start Earning</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SECTION 1: HERO -->
+  <section class="hero">
+    <div class="hero-tag">
+      <span class="hero-dot"></span>
+      LAS VEGAS
+    </div>
+    <h1>You already do the work.<br>Now run it like a<br><em>real business.</em></h1>
+    <p>Your own professional page, booking system, invoicing, and client reviews. All in one place. <strong>All free.</strong></p>
+    <div class="hero-ctas">
+      <a href="javascript:void(0)" onclick="openModal()" class="btn-primary">Get Started Free</a>
+      <a href="javascript:void(0)" class="btn-ghost" onclick="document.getElementById('videoModal').classList.add('active')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg>
+        Watch How It Works
+      </a>
+    </div>
+  </section>
+
+  <!-- SECTION 2: VISUAL PROOF -->
+  <section class="proof-section">
+    <div class="proof-inner">
+      <div class="proof-heading">
+        <h2>This is what your clients see</h2>
+        <p>Your own professional page. Share the link. Get booked.</p>
+      </div>
+
+      <!-- Phone mockup stack -->
+      <div class="mockup-container">
+        <div class="mockup-stack">
+
+        <!-- Back phone: Availability picker -->
+        <div class="phone-frame-back">
+          <div class="avail-header">
+            <h3>Select date and time</h3>
+            <div class="avail-close">&#10005;</div>
+          </div>
+          <div class="avail-cal-nav">
+            <div class="avail-cal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div class="avail-arrows">
+              <div class="avail-arrow disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+              <div class="avail-arrow active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></div>
+            </div>
+          </div>
+          <div class="avail-week">
+            <div class="avail-day past"><div class="avail-day-label">Su</div><div class="avail-day-num">28</div></div>
+            <div class="avail-day past"><div class="avail-day-label">Mo</div><div class="avail-day-num">29</div></div>
+            <div class="avail-day past"><div class="avail-day-label">Tu</div><div class="avail-day-num">30</div></div>
+            <div class="avail-day past"><div class="avail-day-label">We</div><div class="avail-day-num">1</div></div>
+            <div class="avail-day today"><div class="avail-day-label">Th</div><div class="avail-day-num">2</div></div>
+            <div class="avail-day"><div class="avail-day-label">Fr</div><div class="avail-day-num">3</div></div>
+            <div class="avail-day"><div class="avail-day-label">Sa</div><div class="avail-day-num">4</div></div>
+          </div>
+          <div class="avail-title">
+            <h4>Cooper's available times on Thursday, July 2</h4>
+            <span>1 hour</span>
+          </div>
+          <div class="avail-slots">
+            <div class="avail-slot past-time"><span class="slot-time">9:30</span><span class="slot-period">AM</span></div>
+            <div class="avail-slot past-time"><span class="slot-time">10:00</span><span class="slot-period">AM</span></div>
+            <div class="avail-slot past-time"><span class="slot-time">10:30</span><span class="slot-period">AM</span></div>
+            <div class="avail-slot past-time"><span class="slot-time">11:00</span><span class="slot-period">AM</span></div>
+            <div class="avail-slot past-time"><span class="slot-time">11:30</span><span class="slot-period">AM</span></div>
+            <div class="avail-slot past-time"><span class="slot-time">12:00</span><span class="slot-period">PM</span></div>
+            <div class="avail-slot selected sel-start"><span class="slot-time">12:30</span><span class="slot-period">PM</span></div>
+            <div class="avail-slot half-selected"><span class="slot-time">1:00</span><span class="slot-period">PM</span></div>
+            <div class="avail-slot selected sel-end"><span class="slot-time">1:30</span><span class="slot-period">PM</span></div>
+            <div class="avail-slot"><span class="slot-time">2:00</span><span class="slot-period">PM</span></div>
+            <div class="avail-slot"><span class="slot-time">2:30</span><span class="slot-period">PM</span></div>
+            <div class="avail-slot"><span class="slot-time">3:00</span><span class="slot-period">PM</span></div>
+            <div class="avail-slot"><span class="slot-time">3:30</span><span class="slot-period">PM</span></div>
+            <div class="avail-slot"><span class="slot-time">4:00</span><span class="slot-period">PM</span></div>
+            <div class="avail-slot"><span class="slot-time">4:30</span><span class="slot-period">PM</span></div>
+          </div>
+          <div class="avail-bottom">
+            <div>
+              <div class="avail-bottom-date">Thu, Jul 2</div>
+              <div class="avail-bottom-time">12:30 PM &ndash; 1:30 PM (1 hr)</div>
+            </div>
+            <div class="avail-continue">Continue</div>
+          </div>
+        </div>
+
+        <!-- Mid phone: Booking suggestions -->
+        <div class="phone-frame-mid">
+          <div class="mock-topbar">
+            <div class="mock-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+            <div class="mock-topbar-actions">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+          </div>
+          <div class="book-section">
+            <div class="book-section-title">Suggested booking times</div>
+            <div class="book-section-sub">Written by this Service Provider</div>
+            <div class="book-sug">
+              <div class="book-sug-name">Event Highlight Reel</div>
+              <div class="book-sug-desc">Coverage of your event with a polished recap video. Includes setup, filming, and basic edit.</div>
+              <div class="book-sug-dur">4 hours</div>
+            </div>
+          </div>
+          <div class="book-divider"></div>
+          <div class="book-review">
+            <div class="book-review-heading">Reviews (32)</div>
+            <div class="book-review-card">
+              <div class="book-review-top">
+                <div class="book-review-avatar">M</div>
+                <div>
+                  <div class="book-review-name">Maria S.</div>
+                  <div class="book-review-date">June 2025</div>
+                </div>
+              </div>
+              <div class="book-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="book-review-text">Cooper filmed our grand opening and the video was incredible. Professional and on time.</div>
+            </div>
+          </div>
+          <div style="height:8px"></div>
+          <div class="book-reviews-btn">Show all 32 reviews</div>
+          <div class="mock-sticky-bar">
+            <div>
+              <div class="mock-price">$150/hour</div>
+              <div class="mock-price-note"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.41 11.58l-9-9A2 2 0 0011 2H4a2 2 0 00-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.58l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.43zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg> Total. No hidden fees</div>
+            </div>
+            <div class="mock-avail-btn">Check availability</div>
+          </div>
+        </div>
+
+        <!-- Front phone: Profile -->
+        <div class="phone-frame">
+          <div class="mock-topbar">
+            <div class="mock-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+            <div class="mock-topbar-actions">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+          </div>
+          <div class="mock-profile">
+            <div class="mock-avatar"><img src="assets/cooper-p.jpeg" alt="Cooper P."></div>
+            <div class="mock-profile-info">
+              <div class="mock-name">Cooper P. <svg class="mock-verified" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+              <div class="mock-badge"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.9 (32 reviews)</div>
+            </div>
+          </div>
+          <div class="mock-about">
+            <div class="mock-about-title">About Me</div>
+            <div class="mock-about-text">Hi, I'm Cooper. I've been shooting video in Las Vegas for 7 years, covering everything from weddings and events to brand content and real estate tours. I bring my own gear, handle editing, and deliver polished final cuts on tim...</div>
+            <div class="mock-about-more">Show more</div>
+          </div>
+          <div class="mock-photos">
+            <div class="mock-photo-grid">
+              <div class="ph"><img src="assets/cooper-babyshower.jpeg" alt="Recording a baby shower"></div>
+              <div class="ph"><img src="assets/cooper-runway.jpeg" alt="Filming a runway show"></div>
+              <div class="ph"><img src="assets/cooper-makeup.jpeg" alt="Recording a product shoot" style="object-position:center 75%"></div>
+              <div class="ph"><img src="assets/cooper-dj.jpeg" alt="Recording a DJ set"></div>
+              <div class="ph"><img src="assets/cooper-musicvideo.jpeg" alt="Shooting a music video"></div>
+            </div>
+            <div class="mock-photo-btn">Show all 6 photos &amp; videos</div>
+          </div>
+          <div class="mock-sticky-bar">
+            <div>
+              <div class="mock-price">$150/hour</div>
+              <div class="mock-price-note"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.41 11.58l-9-9A2 2 0 0011 2H4a2 2 0 00-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.58l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.43zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg> Total. No hidden fees</div>
+            </div>
+            <div class="mock-avail-btn">Check availability</div>
+          </div>
+        </div>
+        </div><!-- /mockup-stack -->
+        <div class="mockup-dots">
+          <button class="mockup-dot active" data-index="0" aria-label="Profile page"></button>
+          <button class="mockup-dot" data-index="1" aria-label="Booking suggestions"></button>
+          <button class="mockup-dot" data-index="2" aria-label="Availability page"></button>
+        </div>
+        <div class="mockup-tap-hint">Tap to switch views</div>
+      </div>
+
+      <!-- Callout cards -->
+      <div class="callouts">
+        <div class="callout">
+          <div class="callout-icon">&#128279;</div>
+          <div class="callout-text"><h3>Clients book from your link</h3>
+          <p>Share one link. They pick a time. No more texting back and forth.</p></div>
+        </div>
+        <div class="callout">
+          <div class="callout-icon">&#128176;</div>
+          <div class="callout-text"><h3>Payments come to you</h3>
+          <p>Invoices go out automatically. No more chasing Venmo requests.</p></div>
+        </div>
+        <div class="callout">
+          <div class="callout-icon">&#11088;</div>
+          <div class="callout-text"><h3>Reviews build your rep</h3>
+          <p>After every job, clients leave a review on your page. Your reputation grows.</p></div>
+        </div>
+      </div>
+
+      <div class="proof-cta">
+        <a href="javascript:void(0)" onclick="openModal()" class="btn-primary">Build Your Page</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: SOUND FAMILIAR? -->
+  <section class="pain-section">
+    <h2>Sound familiar?</h2>
+    <div class="pain-items">
+      <div class="pain-item">
+        <div class="pain-icon pain-icon-blue">&#128172;</div>
+        <p>You're scheduling every job over texts or DMs<span>Back and forth just to find a time that works</span></p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon pain-icon-green">&#128184;</div>
+        <p>You're chasing payments on Venmo and Cash App<span>And sometimes they just forget to pay</span></p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon pain-icon-gray">&#128247;</div>
+        <p>You're texting screenshots as proof<span>No website, no reviews, no booking link</span></p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon pain-icon-red">&#128197;</div>
+        <p>You're tracking jobs in notes and calendar apps<span>Tools that weren't built for running a service business</span></p>
+      </div>
+    </div>
+    <a href="javascript:void(0)" onclick="openModal()" class="btn-primary">Fix That Today</a>
+  </section>
+
+  <!-- SERVICE WHEEL -->
+  <section class="wheel-section">
+    <h2>One platform. Every service.</h2>
+    <p class="wheel-subtitle"><strong>108 services</strong> and counting.</p>
+    <div class="wheel-container">
+      <div class="wheel-mask-top"></div>
+      <div class="wheel-mask-bottom"></div>
+      <div class="wheel-track" id="wheelTrack"></div>
+    </div>
+    <p class="wheel-count">Don't see yours?<br><a href="javascript:void(0)" onclick="document.getElementById('hsModal').classList.add('active')">Add your info and we'll email you when we add it.</a></p>
+  </section>
+
+  <!-- HUBSPOT MODAL -->
+  <div class="hs-modal-overlay" id="hsModal" onclick="if(event.target===this)this.classList.remove('active')">
+    <div class="hs-modal">
+      <button class="hs-modal-close" onclick="document.getElementById('hsModal').classList.remove('active')">&times;</button>
+      <h3>We'll let you know.</h3>
+      <p>Drop your info below and we'll email you as soon as your service is available on HappyTask.</p>
+      <script src="https://js-na2.hsforms.net/forms/embed/46816421.js" defer></script>
+      <div class="hs-form-frame" data-region="na2" data-form-id="c2e4ee32-c342-424d-837c-6fb5be1b5c05" data-portal-id="46816421"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: TESTIMONIAL -->
+  <section class="testimonial-section">
+    <p class="testimonial-label">From a HappyTasker</p>
+    <div class="testimonial-card">
+      <img class="testimonial-avatar" src="assets/sabrina-g.jpeg" alt="Sabrina G." />
+      <div class="testimonial-body">
+        <div class="testimonial-quote">"I used to run everything off my phone. DMs to clients, texts to schedule, Zelle to get paid, no website to show my work. It was a WHOLE mess. Now I just send one link and clients book themselves. It took me like 10 minutes to set up."</div>
+        <div class="testimonial-meta"><strong>Sabrina G.</strong> &middot; House Cleaner, Las Vegas</div>
+      </div>
+    </div>
+    <div class="testimonial-cta">
+      <a href="javascript:void(0)" onclick="openModal()" class="btn-primary">Join Free</a>
+    </div>
+  </section>
+
+  <!-- SECTION 5: TOOLS -->
+  <section class="tools-section">
+    <h2>Your entire business toolkit. <em>Free.</em></h2>
+    <p class="tools-subtitle">Other platforms charge $195+/month for these same tools. <strong>You get all of them the moment you sign up.</strong></p>
+    <div class="tools-value-tag">$195/mo value &mdash; yours free</div>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-card-icon orange">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f7880c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Your own professional page</h3>
+        <p>A shareable link clients can book you from. No website builder needed.</p>
+        <div class="tool-value">$25/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64ad43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Scheduling and availability</h3>
+        <p>Set your hours. Clients pick a time. No more back-and-forth texts.</p>
+        <div class="tool-value">$15/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h3>Invoicing and payments</h3>
+        <p>Automatic invoices. Clients pay once the service is complete. No more chasing payments.</p>
+        <div class="tool-value">$20/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon purple">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>CRM and client base</h3>
+        <p>Track every client, booking, and message in one place. Build repeat business.</p>
+        <div class="tool-value">$25/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon orange">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f7880c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>Client messaging</h3>
+        <p>Message clients right inside the platform. Keep everything in one thread.</p>
+        <div class="tool-value">$10/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64ad43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Page view tracking</h3>
+        <p>See when people viewed your page and when. Know how many potential clients are interested.</p>
+        <div class="tool-value">$15/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon purple">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+        </div>
+        <h3>Task management</h3>
+        <p>See every job you've been hired for. Track what's coming up and what's done.</p>
+        <div class="tool-value">$10/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon orange">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f7880c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Service area</h3>
+        <p>Choose exactly where you want to work. Only get booked in areas you cover.</p>
+        <div class="tool-value">$5/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64ad43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+        </div>
+        <h3>My services</h3>
+        <p>List everything you offer. Clients see your services and pick what they need.</p>
+        <div class="tool-value">$5/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        </div>
+        <h3>Team members</h3>
+        <p>Add people to your team. Manage your crew and assign jobs together.</p>
+        <div class="tool-value">$15/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon purple">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 10h6"/><path d="M9 14h4"/></svg>
+        </div>
+        <h3>Client requirements</h3>
+        <p>Set what info clients must share before they book you. Get prepared, not surprised.</p>
+        <div class="tool-value">$5/mo value</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        </div>
+        <h3>Business classroom</h3>
+        <p>Short lessons on pricing, follow-ups, and getting repeat bookings.</p>
+        <div class="tool-value">$30/mo value</div>
+      </div>
+    </div>
+    <a href="javascript:void(0)" onclick="openModal()" class="btn-primary">Get all 12 tools free</a>
+  </section>
+
+  <!-- SECTION 6: FAQ -->
+  <section class="faq-section">
+    <h2>Common questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Is it really free?</summary>
+        <p>Yes, completely free. You get every tool, your own professional page, booking, invoicing, and payments from day one. No trial period, no credit card, no catch. We make money by adding a small service fee on top of what clients pay. You always keep 100% of the rate you set.</p>
+      </details>
+      <details>
+        <summary>What services can I offer?</summary>
+        <p>Over 100 services across 14 categories. If people in Las Vegas need it done, there is a good chance it is already listed.</p>
+      </details>
+      <details>
+        <summary>Do I need business experience?</summary>
+        <p>Not at all. If you already clean houses, detail cars, walk dogs, or do any kind of service work, you have everything you need. HappyTask gives you the tools to handle the business side so you can focus on the work you're already good at.</p>
+      </details>
+      <details>
+        <summary>What if I already have clients?</summary>
+        <p>Even better. Send them your HappyTask link instead of texting back and forth. They book themselves, you get paid automatically, and you have a record of every job. It is the easiest upgrade to how you already work.</p>
+      </details>
+      <details>
+        <summary>Do I need clients already to use HappyTask?</summary>
+        <p>Nope. Whether you have 50 clients or zero, HappyTask gives you the tools to look professional, get booked, and get paid. If you want extra visibility, our Marketing Boost add-on gets you listed in search results so new clients can find you.</p>
+      </details>
+      <details>
+        <summary>How does HappyTask make money?</summary>
+        <p>You keep 100% of your rate. We add a small percentage on top of what the client pays, and we show you exactly what it is every time. No surprises. The more you grow and get booked, the better we do.</p>
+      </details>
+      <details>
+        <summary>Will there be clients ready to book me?</summary>
+        <p>HappyTask is built to help you run your business, not to send you unqualified leads. You bring your clients, your reputation, and your hustle. We give you the professional page, booking, and payments to back it up. If you want to reach new clients too, our Marketing Boost add-on gets you listed in search results where people are already looking.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- SIGNUP MODAL -->
+  <div class="ht-modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-label="Sign Up" onclick="if(event.target===this)closeModal()">
+    <div class="ht-modal ht-modal--signup">
+      <button class="ht-modal-close" onclick="closeModal()" aria-label="Close">&#10005;</button>
+      <h2 class="signup-heading">Join HappyTask</h2>
+      <div class="signup-error" id="signup-error"></div>
+      <div id="show_msg" class="alert alert-danger quickSignupResponseArea show_msg p-0 hidden"></div>
+      <form action="https://happytask.com/sp-onboarding-new" method="post" id="quickSpSignUp">
+        <div class="signup-row">
+          <div class="signup-field">
+            <input class="signup-input required" type="text" id="fname" name="fname" placeholder="First name" autocomplete="given-name" required>
+          </div>
+          <div class="signup-field">
+            <input class="signup-input required" type="text" id="lname" name="lname" placeholder="Last name" autocomplete="family-name" required>
+          </div>
+        </div>
+        <div class="signup-row full">
+          <input class="signup-input required" type="email" id="user-email" name="email" placeholder="Email" autocomplete="username" required>
+        </div>
+        <div class="signup-row full">
+          <div class="password-wrap">
+            <div class="input-group" id="show_hide_password">
+              <input class="signup-input required" type="password" id="password" name="password" placeholder="Password" autocomplete="new-password" required>
+              <button type="button" class="toggle-pw" onclick="var p=document.getElementById('password');p.type=p.type==='password'?'text':'password'" aria-label="Toggle password visibility">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="password-hint" id="passwordHint">10+ characters with at least one capital letter or number.</div>
+        <div class="signup-row">
+          <div class="signup-field">
+            <input class="signup-input required" type="tel" id="cellphone" name="phone_number" placeholder="Mobile phone" autocomplete="off" required>
+          </div>
+          <div class="signup-field">
+            <select class="signup-select required" name="state" id="state" required>
+              <option value="">State</option>
+              <option value="AL">AL - Alabama</option><option value="AK">AK - Alaska</option><option value="AZ">AZ - Arizona</option><option value="AR">AR - Arkansas</option><option value="CA">CA - California</option><option value="CO">CO - Colorado</option><option value="CT">CT - Connecticut</option><option value="DE">DE - Delaware</option><option value="FL">FL - Florida</option><option value="GA">GA - Georgia</option><option value="HI">HI - Hawaii</option><option value="ID">ID - Idaho</option><option value="IL">IL - Illinois</option><option value="IN">IN - Indiana</option><option value="IA">IA - Iowa</option><option value="KS">KS - Kansas</option><option value="KY">KY - Kentucky</option><option value="LA">LA - Louisiana</option><option value="ME">ME - Maine</option><option value="MD">MD - Maryland</option><option value="MA">MA - Massachusetts</option><option value="MI">MI - Michigan</option><option value="MN">MN - Minnesota</option><option value="MS">MS - Mississippi</option><option value="MO">MO - Missouri</option><option value="MT">MT - Montana</option><option value="NE">NE - Nebraska</option><option value="NV" selected>NV - Nevada</option><option value="NH">NH - New Hampshire</option><option value="NJ">NJ - New Jersey</option><option value="NM">NM - New Mexico</option><option value="NY">NY - New York</option><option value="NC">NC - North Carolina</option><option value="ND">ND - North Dakota</option><option value="OH">OH - Ohio</option><option value="OK">OK - Oklahoma</option><option value="OR">OR - Oregon</option><option value="PA">PA - Pennsylvania</option><option value="RI">RI - Rhode Island</option><option value="SC">SC - South Carolina</option><option value="SD">SD - South Dakota</option><option value="TN">TN - Tennessee</option><option value="TX">TX - Texas</option><option value="UT">UT - Utah</option><option value="VT">VT - Vermont</option><option value="VA">VA - Virginia</option><option value="WA">WA - Washington</option><option value="WV">WV - West Virginia</option><option value="WI">WI - Wisconsin</option><option value="WY">WY - Wyoming</option>
+            </select>
+          </div>
+        </div>
+        <p class="signup-terms">
+          By signing up, you agree to our <a href="https://happytask.com/terms-of-use" target="_blank">Terms of Use</a> and <a href="https://happytask.com/privacy-policy" target="_blank">Privacy Policy</a>.
+        </p>
+        <input type="checkbox" name="termsofuse" class="required" id="termsofuse" value="1" checked style="display:none;" aria-hidden="true">
+        <button type="submit" class="signup-submit" id="btn_submit">Create Account</button>
+        <input type="hidden" name="verifiedOtp" id="verifiedOtp" value="0" readonly>
+        <input type="hidden" name="cell_otp" id="verifyOtp" value="0" readonly>
+        <input type="hidden" name="redirect" id="redirect" value="true" readonly>
+        <input type="hidden" name="current_page_name" value="sp-onboarding-new">
+      </form>
+    </div>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div class="video-modal-overlay" id="videoModal" onclick="if(event.target===this){this.classList.remove('active');document.getElementById('vimeoPlayer').src=''}">
+    <div class="video-modal">
+      <div class="video-modal-frame">
+        <iframe id="vimeoPlayer" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <button class="video-modal-close" onclick="document.getElementById('videoModal').classList.remove('active');document.getElementById('vimeoPlayer').src=''">&#10005; Close video</button>
+    </div>
+  </div>
+
+  <script>
+  function openModal() {
+    document.getElementById('bookingModal').classList.add('active');
+  }
+  function closeModal() {
+    document.getElementById('bookingModal').classList.remove('active');
+  }
+
+  // Mockup stack swap
+  (function() {
+    const stack = document.querySelector('.mockup-stack');
+    const cards = [
+      document.querySelector('.phone-frame'),
+      document.querySelector('.phone-frame-mid'),
+      document.querySelector('.phone-frame-back')
+    ];
+    const dots = document.querySelectorAll('.mockup-dot');
+    if (!stack || cards.some(function(c) { return !c; })) return;
+
+    var current = 0;
+
+    function setStackHeight() {
+      cards.forEach(function(c) { c.style.height = ''; });
+      var h = Math.max(cards[0].scrollHeight, cards[2].scrollHeight);
+      cards.forEach(function(c) { c.style.height = h + 'px'; });
+      stack.style.height = h + 'px';
+    }
+    setStackHeight();
+    window.addEventListener('resize', setStackHeight);
+
+    function showCard(idx) {
+      current = idx;
+      cards.forEach(function(c, i) {
+        c.classList.remove('mockup-card-active', 'mockup-card-behind');
+        if (i === idx) c.classList.add('mockup-card-active');
+        else c.classList.add('mockup-card-behind');
+      });
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+    showCard(0);
+    requestAnimationFrame(function() { stack.classList.add('ready'); });
+
+    stack.addEventListener('click', function() {
+      showCard((current + 1) % cards.length);
+    });
+    dots.forEach(function(d) { d.addEventListener('click', function(e) {
+      e.stopPropagation();
+      showCard(+this.dataset.index);
+    }); });
+  })();
+  document.getElementById('videoModal').addEventListener('click', function(e) {
+    if (e.target === this) return;
+  });
+  document.querySelector('.btn-ghost').addEventListener('click', function() {
+    document.getElementById('vimeoPlayer').src = 'https://player.vimeo.com/video/444382830?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1';
+  });
+  </script>
+
+  <script>
+  (function() {
+    const services = [
+      "Car Washing & Detailing","Garage/Basement/Shop Cleaning","Home Cleaning","Laundry",
+      "Office Cleaning","Pool Cleaning","Pressure Washing","Rain Gutter Cleaning",
+      "Trash Removal","Window Cleaning","ACT/SAT Exam Tutoring","Art Instructor",
+      "Device & Software Tutoring","History Tutoring","Language Arts Tutoring",
+      "Math Tutoring","Science Tutoring","Actors/Extras","Audio/Visual",
+      "Children's Entertainment","DJs","Live Bands","Magician","Modeling","Solo Artists",
+      "Bartender","Bodyguard/Security","Event Planner","Lifeguard","Personal Chef",
+      "Photographer","Server","Videographer","Babysitter","Cooking/Meal Preparation",
+      "Elderly Care","Family Assistant","Special Needs Care","Assemble Products",
+      "General Helper","General Laborer","Moving/Packing","Receptionist","Retail/Sales",
+      "Carpenter (Finish)","Carpenter (General)","Carpet Installer","Concrete Finisher",
+      "Drywall/Taping","Electrical Work","Flooring","Handyman Work","Masonry","Painting",
+      "Plumbing","Roofing","Tile Setter","Garden Bedding","Lawn Maintenance","Planting",
+      "Snow Removal","Brass Instruments",
+      "Guitar & String Instruments","Percussion Instruments","Piano","Vocal Instructor",
+      "Woodwind Instruments","Barber","Fashion Stylist","Hair Removal","Hair Stylist",
+      "Makeup Artist","Massage","Nail Care","Skin Care","Pet Grooming","Pet Sitting",
+      "Pet Training","Pet Walking","Accounting/Bookkeeping","Interior Designer",
+      "Interpreter/Translator","Organizer (Closet, Home, Life)","Personal Assistant",
+      "Video Resume Production","Baseball Training","Basketball Training",
+      "Football Training","Golf Training","Lacrosse Training","Personal Trainer",
+      "Pickleball Training","Soccer Training","Tennis Training",
+      "American Sign Language","Arabic/English","Chinese/English","English",
+      "French/English","German/English","Italian/English","Japanese/English",
+      "Korean/English","Portuguese/English","Russian/English","Spanish/English",
+      "Tagalog/English","Vietnamese/English"
+    ];
+
+    const track = document.getElementById('wheelTrack');
+    const itemHeight = 48;
+    const visibleItems = 5;
+    const centerIndex = Math.floor(visibleItems / 2);
+
+    // Triple the list so we can loop seamlessly
+    const tripled = [...services, ...services, ...services];
+    tripled.forEach(function(s) {
+      var div = document.createElement('div');
+      div.className = 'wheel-item';
+      div.textContent = s;
+      track.appendChild(div);
+    });
+
+    var offset = services.length * itemHeight;
+    var speed = 0.6;
+    var paused = false;
+    var pauseTimer = null;
+    var rafId = null;
+    var lastTime = 0;
+
+    function updateClasses() {
+      var items = track.children;
+      var centerY = offset + (visibleItems * itemHeight) / 2;
+      var closestIdx = 0;
+      var closestDist = Infinity;
+      for (var i = 0; i < items.length; i++) {
+        var itemCenter = i * itemHeight + itemHeight / 2;
+        var dist = Math.abs(itemCenter - centerY);
+        if (dist < closestDist) { closestDist = dist; closestIdx = i; }
+      }
+      for (var i = 0; i < items.length; i++) {
+        var itemCenter = i * itemHeight + itemHeight / 2;
+        var dist = Math.abs(itemCenter - centerY);
+        items[i].classList.remove('active', 'near', 'far');
+        if (i === closestIdx) {
+          items[i].classList.add('active');
+        } else if (dist < itemHeight * 1.5) {
+          items[i].classList.add('near');
+        } else if (dist < itemHeight * 2.5) {
+          items[i].classList.add('far');
+        }
+      }
+    }
+
+    function animate(now) {
+      if (!paused) {
+        var delta = lastTime ? (now - lastTime) : 16;
+        if (delta > 100) delta = 16;
+        lastTime = now;
+        offset += speed * (delta / 16);
+        if (offset >= services.length * 2 * itemHeight) {
+          offset -= services.length * itemHeight;
+        }
+        track.style.transform = 'translateY(' + (-offset) + 'px)';
+        updateClasses();
+      } else {
+        lastTime = 0;
+      }
+      rafId = requestAnimationFrame(animate);
+    }
+
+    function startWheel() {
+      if (rafId) return;
+      lastTime = 0;
+      rafId = requestAnimationFrame(animate);
+    }
+
+    function stopWheel() {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      lastTime = 0;
+    }
+
+    function resetWheel() {
+      offset = (services.length - centerIndex) * itemHeight;
+      track.style.transform = 'translateY(' + (-offset) + 'px)';
+      updateClasses();
+    }
+
+    var wheelSection = document.querySelector('.wheel-section');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          resetWheel();
+          startWheel();
+        } else {
+          stopWheel();
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(wheelSection);
+
+    var container = track.parentElement;
+    container.addEventListener('mouseenter', function() {
+      paused = true;
+    });
+    container.addEventListener('mouseleave', function() {
+      paused = false;
+    });
+    container.addEventListener('touchstart', function() {
+      paused = true;
+      clearTimeout(pauseTimer);
+      pauseTimer = setTimeout(function() { paused = false; }, 3000);
+    }, { passive: true });
+
+    resetWheel();
+  })();
+  </script>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 HappyTask &middot; Las Vegas, NV
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
